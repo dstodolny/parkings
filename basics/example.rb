@@ -154,6 +154,6 @@ class WebPage
   end
 
   def search(query)
-    articles.select { |article| !!article.body.index(query) }
+    articles.select { |article| article.contain?(query) }
   end
 end
