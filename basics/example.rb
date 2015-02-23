@@ -26,4 +26,24 @@ class Article
   def votes
     @likes + @dislikes
   end
+
+  def long_lines
+    @body.lines.select { |line| line.size > 80 }
+  end
+
+  def length
+    @body.size
+  end
+
+  def truncate(limit)
+    if length > limit
+      @body[0, limit - 3] + "..."
+    else
+      @body
+    end
+  end
+
+  def contain?(pattern)
+    @body.match(pattern) || @body.include?(pattern.to_s)
+  end
 end
