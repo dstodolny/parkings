@@ -52,4 +52,13 @@ class ArticlesFileSystem
   def initialize(dir)
     @dir = dir
   end
+
+  def save(articles)
+    articles.each do |article|
+      file_name = article.title.downcase.gsub(/\s+/, "_") + ".article"
+      file_body = [article.author, article.likes, article.dislikes, article.body].join("||")
+
+      File.open(@dir + "/" + file_name, "w") { |file| file.write(file_body) }
+    end
+  end
 end
