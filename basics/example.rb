@@ -44,7 +44,7 @@ class Article
   end
 
   def contain?(pattern)
-    @body.match(pattern) || @body.include?(pattern.to_s)
+    @body.index(pattern) ? true : false
   end
 end
 
