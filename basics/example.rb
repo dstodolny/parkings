@@ -47,3 +47,9 @@ class Article
     @body.match(pattern) || @body.include?(pattern.to_s)
   end
 end
+
+class ArticlesFileSystem
+  def initialize(dir)
+    @dir = dir
+  end
+end
