@@ -110,7 +110,7 @@ class WebPage
   end
 
   def longest_articles
-    articles.sort_by { |article| article.length }.reverse
+    articles.sort_by(&:length).reverse
   end
 
   def best_articles
