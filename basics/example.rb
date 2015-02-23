@@ -88,6 +88,8 @@ class ArticlesFileSystem
 end
 
 class WebPage
+  class NoArticlesFound < StandardError; end
+
   attr_reader :dir, :articles
 
   def initialize(dir = "/")
@@ -105,5 +107,31 @@ class WebPage
 
   def new_article(title, body, author)
     @articles << Article.new(title, body, author)
+  end
+
+  def longest_articles
+    articles.sort_by { |article| article.body.size }.reverse
+  end
+
+  def best_articles
+    articles.sort_by(&:points).reverse
+  end
+
+  def worst_articles
+    best_articles.reverse
+  end
+
+  def best_article
+    fail NoArticlesFound if @articles.empty?
+    best_articles.first
+  end
+
+  def worst_article
+    fail NoArticlesFound if @articles.empty?
+    best_articles.last
+  end
+
+  def most_controversial_articles
+    articles.sort_by(&:votes).reverse
   end
 end
