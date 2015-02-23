@@ -86,3 +86,74 @@ class ArticlesFileSystem
     file_name.match(/(\w+)\.article$/)[1].gsub("_", " ").capitalize
   end
 end
+
+class WebPage
+  class NoArticlesFound < StandardError; end
+
+  attr_reader :dir, :articles
+
+  def initialize(dir = "/")
+    @dir = dir
+    @articles = load
+  end
+
+  def load
+    ArticlesFileSystem.new(dir).load
+  end
+
+  def save
+    ArticlesFileSystem.new(dir).save(articles)
+  end
+
+  def new_article(title, body, author)
+    @articles << Article.new(title, body, author)
+  end
+
+  def longest_articles
+    articles.sort_by { |article| article.body.size }.reverse
+  end
+
+  def best_articles
+    articles.sort_by(&:points).reverse
+  end
+
+  def worst_articles
+    best_articles.reverse
+  end
+
+  def best_article
+    fail NoArticlesFound if @articles.empty?
+    best_articles.first
+  end
+
+  def worst_article
+    fail NoArticlesFound if @articles.empty?
+    best_articles.last
+  end
+
+  def most_controversial_articles
+    articles.sort_by(&:votes).reverse
+  end
+
+  def votes
+    articles.reduce(0) { |a, e| a + e.votes }
+  end
+
+  def authors
+    articles.map(&:author).uniq
+  end
+
+  def authors_statistics
+    result = Hash.new(0)
+    articles.each { |article| result[article.author] += 1 }
+    result
+  end
+
+  def best_author
+    authors_statistics.max_by { |_, v| v }[0]
+  end
+
+  def search(query)
+    articles.select { |article| !!article.body.index(query) }
+  end
+end
