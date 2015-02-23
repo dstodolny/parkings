@@ -83,7 +83,7 @@ class ArticlesFileSystem
   end
 
   def get_title(file_name)
-    file_name.match(/(\w+)\.article$/)[1].gsub("_", " ").capitalize
+    File.basename(file_name, ".article").gsub("_", " ").capitalize
   end
 end
 
