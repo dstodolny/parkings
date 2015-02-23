@@ -134,4 +134,22 @@ class WebPage
   def most_controversial_articles
     articles.sort_by(&:votes).reverse
   end
+
+  def votes
+    articles.reduce(0) { |a, e| a + e.votes }
+  end
+
+  def authors
+    articles.map(&:author).uniq
+  end
+
+  def authors_statistics
+    result = Hash.new(0)
+    articles.each { |article| result[article.author] += 1 }
+    result
+  end
+
+  def best_author
+    authors_statistics.max_by { |_, v| v }[0]
+  end
 end
