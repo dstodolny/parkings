@@ -94,11 +94,11 @@ class WebPage
 
   def initialize(dir = "/")
     @dir = dir
-    @articles = load
+    load
   end
 
   def load
-    ArticlesFileSystem.new(dir).load
+    @articles = ArticlesFileSystem.new(dir).load
   end
 
   def save
