@@ -136,7 +136,7 @@ class WebPage
   end
 
   def votes
-    articles.reduce(0) { |a, e| a + e.votes }
+    articles.map { |article| article.votes }.reduce(0, &:+)
   end
 
   def authors
@@ -150,7 +150,7 @@ class WebPage
   end
 
   def best_author
-    authors_statistics.max_by { |_, v| v }[0]
+    authors_statistics.max_by { |_, v| v }.first
   end
 
   def search(query)
