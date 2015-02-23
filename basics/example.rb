@@ -86,3 +86,24 @@ class ArticlesFileSystem
     file_name.match(/(\w+)\.article$/)[1].gsub("_", " ").capitalize
   end
 end
+
+class WebPage
+  attr_reader :dir, :articles
+
+  def initialize(dir = "/")
+    @dir = dir
+    @articles = load
+  end
+
+  def load
+    ArticlesFileSystem.new(dir).load
+  end
+
+  def save
+    ArticlesFileSystem.new(dir).save(articles)
+  end
+
+  def new_article(title, body, author)
+    @articles << Article.new(title, body, author)
+  end
+end
