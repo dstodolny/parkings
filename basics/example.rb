@@ -152,4 +152,8 @@ class WebPage
   def best_author
     authors_statistics.max_by { |_, v| v }[0]
   end
+
+  def search(query)
+    articles.select { |article| !!article.body.index(query) }
+  end
 end
