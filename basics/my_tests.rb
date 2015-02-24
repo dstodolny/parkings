@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require './example'
+require 'tmpdir'
 
 class ArticleTest < Minitest::Test
   def setup
@@ -88,5 +89,40 @@ class ArticleTest < Minitest::Test
     assert article.contain?("klm")
     assert article.contain?(/[f-i]{4}/)
     assert_equal false, article.contain?("kkk")
+  end
+end
+
+class ArticlesFileSystemTest < Minitest::Test
+  def setup
+    @dir = Dir.mktmpdir
+    @fs = ArticlesFileSystem.new(@dir)
+    @article1 = Article.new("Article1", "Lorem ipsum" * 2, "John Doe")
+    @article2 = Article.new("Article 2", "Lorem ipsum" * 3)
+
+    2.times { @article1.like! }
+    @articles = [@article1, @article2]
+  end
+
+  def teardown
+    FileUtils.rm_rf(@dir)
+  end
+
+  def test_saving
+    @fs.save(@articles)
+    assert_equal ["#{@dir}/article1.article", "#{@dir}/article_2.article"], Dir["#{@dir}/*.article"].sort
+    assert_equal "John Doe||2||0||Lorem ipsumLorem ipsum", File.read("#{@dir}/article1.article")
+    assert_equal "||0||0||Lorem ipsumLorem ipsumLorem ipsum", File.read("#{@dir}/article_2.article")
+  end
+
+  def test_loading
+    File.write(@dir + "/article1.article", "John Doe||2||0||Lorem ipsumLorem ipsum")
+    File.write(@dir + "/article_2.article", "||0||0||Lorem ipsumLorem ipsumLorem ipsum")
+    File.write(@dir + "/foobar", "||0||0||Lorem ipsumLorem ipsumLorem ipsum")
+    articles = @fs.load.sort_by(&:title)
+    assert_equal ["Article 2", "Article1"], articles.map(&:title)
+    assert_equal ["", "John Doe"], articles.map(&:author)
+    assert_equal ["Lorem ipsum" * 3, "Lorem ipsum" * 2], articles.map(&:body)
+    assert_equal [0, 2], articles.map(&:likes)
+    assert_equal [0, 0], articles.map(&:dislikes)
   end
 end
