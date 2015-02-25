@@ -6,48 +6,55 @@ class ParkingTest < ActiveSupport::TestCase
     @parking = Parking.new(places: 5, kind: "outdoor", hour_price: 10, day_price: 100)
   end
 
-  test "should be valid" do
+  test "is valid with proper data" do
     assert @parking.valid?
   end
 
-  test "places should be present" do
+  test "is invalid without places" do
     @parking.places = nil
-    assert_not @parking.valid?
+    @parking.valid?
+    assert @parking.errors.messages.keys.include?(:places)
   end
 
-  test "hour price should be present" do
+  test "is invalid without hour price" do
     @parking.hour_price = nil
-    assert_not @parking.valid?
+    @parking.valid?
+    assert @parking.errors.messages.keys.include?(:hour_price)
   end
 
-  test "hour price should be numerical" do
+  test "is invalid with non-decimal hour price" do
     @parking.hour_price = "abcd"
-    assert_not @parking.valid?
+    @parking.valid?
+    assert @parking.errors.messages.keys.include?(:hour_price)
   end
 
-  test "day price should be present" do
+  test "is invalid without day price" do
     @parking.day_price = nil
-    assert_not @parking.valid?
+    @parking.valid?
+    assert @parking.errors.messages.keys.include?(:day_price)
   end
 
-  test "day price should be numerical" do
+  test "is invalid with non-decimal day price" do
     @parking.day_price = "abcd"
-    assert_not @parking.valid?
+    @parking.valid?
+    assert @parking.errors.messages.keys.include?(:day_price)
   end
 
-  test "kind validation should accept valid kinds" do
+  test "is valid with proper kinds" do
     valid_kinds = %w(outdoor indoor private street)
     valid_kinds.each do |valid_kind|
       @parking.kind = valid_kind
-      assert @parking.valid?
+      @parking.valid?
+      assert_not @parking.errors.messages.keys.include?(:kind)
     end
   end
 
-  test "kind validation should reject invalid kinds" do
+  test "is invalid with improper kinds" do
     invalid_kinds = %w(single loremipsum 123456)
     invalid_kinds.each do |invalid_kind|
       @parking.kind = invalid_kind
-      assert_not @parking.valid?
+      @parking.valid?
+      assert @parking.errors.messages.keys.include?(:kind)
     end
   end
 end
