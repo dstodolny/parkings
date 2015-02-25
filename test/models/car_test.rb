@@ -3,26 +3,28 @@ require 'test_helper'
 class CarTest < ActiveSupport::TestCase
 
   setup do
-    owner = Person.new(first_name: "Dominik", last_name: "Stodolny")
-    @car = Car.new(registration_number: "AAA1000", model: "Tesla Roadster", owner: owner)
+    @car = cars(:one)
   end
 
-  test "should be valid" do
+  test "is valid with proper data" do
     assert @car.valid?
   end
 
-  test "registration number should be present" do
+  test "is invalid without registration number" do
     @car.registration_number = ""
-    assert_not @car.valid?
+    @car.valid?
+    assert @car.errors.messages.keys.include?(:registration_number)
   end
 
-  test "model should be present" do
+  test "is invalid without model" do
     @car.model = ""
-    assert_not @car.valid?
+    @car.valid?
+    assert @car.errors.messages.keys.include?(:model)
   end
 
-  test "owner should be present" do
+  test "is invalid owner should be present" do
     @car.owner = nil
-    assert_not @car.valid?
+    @car.valid?
+    assert @car.errors.messages.keys.include?(:owner)
   end
 end
