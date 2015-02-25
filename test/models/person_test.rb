@@ -3,15 +3,16 @@ require 'test_helper'
 class PersonTest < ActiveSupport::TestCase
 
   setup do
-    @person = Person.new(first_name: "Dominik", last_name: "Stodolny")
+    @person = people(:one)
   end
 
-  test "should be valid" do
+  test "is valid with proper data" do
     assert @person.valid?
   end
 
-  test "first_name should be present" do
+  test "is invalid without first_name" do
     @person.first_name = ""
-    assert_not @person.valid?
+    @person.valid?
+    assert @person.errors.messages.keys.include?(:first_name)
   end
 end
