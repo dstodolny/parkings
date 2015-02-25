@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225110840) do
+ActiveRecord::Schema.define(version: 20150225111429) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "city"
@@ -30,5 +30,12 @@ ActiveRecord::Schema.define(version: 20150225110840) do
   end
 
   add_index "cars", ["owner_id"], name: "index_cars_on_owner_id"
+
+  create_table "people", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
