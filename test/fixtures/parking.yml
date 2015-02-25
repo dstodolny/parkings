@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  places: MyString
-  kind: MyString
-  hour_price:
-  day_price:
-  address_id:
-  owner_id:
+  places:     4
+  kind:       multilevel
+  hour_price: 7
+  day_price:  70
+  address_id: 1
+  owner_id:   1
 
 two:
-  places: MyString
-  kind: MyString
-  hour_price:
-  day_price:
-  address_id:
-  owner_id:
+  places:     3
+  kind:       singlelevel
+  hour_price: 10
+  day_price:  100
+  address_id: 2
+  owner_id:   2
