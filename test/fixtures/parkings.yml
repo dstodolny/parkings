@@ -5,13 +5,13 @@ one:
   kind:       outdoor
   hour_price: 7
   day_price:  70
-  address_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
-  owner_id:   <%= ActiveRecord::FixtureSet.identify(:one) %>
+  address: one
+  owner: one
 
 two:
   places:     3
   kind:       private
   hour_price: 10
   day_price:  100
-  address_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
-  owner_id:   <%= ActiveRecord::FixtureSet.identify(:two) %>
+  address: one
+  owner: two
