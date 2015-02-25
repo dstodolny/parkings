@@ -50,11 +50,8 @@ class ParkingTest < ActiveSupport::TestCase
   end
 
   test "is invalid with improper kinds" do
-    invalid_kinds = %w(single loremipsum 123456)
-    invalid_kinds.each do |invalid_kind|
-      @parking.kind = invalid_kind
-      @parking.valid?
-      assert @parking.errors.messages.keys.include?(:kind)
-    end
+    @parking.kind = "single"
+    @parking.valid?
+    assert @parking.errors.messages.keys.include?(:kind)
   end
 end
