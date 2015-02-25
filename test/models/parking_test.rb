@@ -3,7 +3,7 @@ require 'test_helper'
 class ParkingTest < ActiveSupport::TestCase
 
   setup do
-    @parking = Parking.new(places: 5, kind: "outdoor", hour_price: 10, day_price: 100)
+    @parking = parking(:one)
   end
 
   test "is valid with proper data" do
