@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AddressTest < ActiveSupport::TestCase
   
-  def setup
+  setup do
     @address = Address.new(city: "London", street: "Kensington 1", zip_code: "10-100")
   end
 
