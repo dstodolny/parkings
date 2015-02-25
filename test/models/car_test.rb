@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CarTest < ActiveSupport::TestCase
 
-  def setup
+  setup do
     owner = Person.new(first_name: "Dominik", last_name: "Stodolny")
     @car = Car.new(registration_number: "AAA1000", model: "Tesla Roadster", owner: owner)
   end
