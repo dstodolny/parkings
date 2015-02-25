@@ -14,9 +14,4 @@ class PersonTest < ActiveSupport::TestCase
     @person.first_name = ""
     assert_not @person.valid?
   end
-
-  test "last_name should be present" do
-    @person.last_name = ""
-    assert_not @person.valid?
-  end
 end
