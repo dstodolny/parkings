@@ -3,9 +3,9 @@
 one:
   registration_number: AAA1000
   model: Tesla Roadster
-  owner_id: 1
+  owner_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
 
 two:
   registration_number: BBB1111
   model: Ford Mustang
-  owner_id: 1
+  owner_id: <%= ActiveRecord::FixtureSet.identify(:one) %>

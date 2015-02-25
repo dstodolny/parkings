@@ -4,12 +4,12 @@ one:
   starts_at: 2015-02-25 13:21:28
   ends_at: 2015-02-25 13:21:28
   price: 1.5
-  parking_id: 
-  car_id: 
+  parking_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
+  car_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
 
 two:
   starts_at: 2015-02-25 13:21:28
   ends_at: 2015-02-25 13:21:28
   price: 1.5
-  parking_id: 
-  car_id: 
+  parking_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
+  car_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
