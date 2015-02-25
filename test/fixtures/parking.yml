@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  places: MyString
+  kind: MyString
+  hour_price:
+  day_price:
+  address_id:
+  owner_id:
+
+two:
+  places: MyString
+  kind: MyString
+  hour_price:
+  day_price:
+  address_id:
+  owner_id:
