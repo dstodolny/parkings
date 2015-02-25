@@ -3,41 +3,40 @@ require 'test_helper'
 class AddressTest < ActiveSupport::TestCase
   
   setup do
-    @address = Address.new(city: "London", street: "Kensington 1", zip_code: "10-100")
+    @address = addresses(:one)
   end
 
-  test "should be valid" do
+  test "is valid with proper data" do
     assert @address.valid?
   end
 
-  test "city should be present" do
+  test "is invalid without city" do
     @address.city = ""
-    assert_not @address.valid?
+    @address.valid?
+    assert @address.errors.messages.keys.include?(:city)
   end
 
-  test "street should be present" do
+  test "is invalid without street" do
     @address.street = ""
-    assert_not @address.valid?
+    @address.valid?
+    assert @address.errors.messages.keys.include?(:street)
   end
 
-  test "zip code should be present" do
+  test "is invalid without zip code" do
     @address.zip_code = ""
-    assert_not @address.valid?
+    @address.valid?
+    assert @address.errors.messages.keys.include?(:zip_code)
   end
 
-  test "zip code validation should accept valid zip codes" do
-    valid_zip_codes = %w(00-000 12-345 99-999)
-    valid_zip_codes.each do |valid_zip_code|
-      @address.zip_code = valid_zip_code
-      assert @address.valid?
-    end
+  test "is valid with proper zip code" do
+    @address.zip_code = "00-100"
+    @address.valid?
+    assert_not @address.errors.messages.keys.include?(:zip_code)
   end
 
-  test "zip code validation should reject invalid zip codes" do
-    invalid_zip_codes = %w(123-45 98765 abcdef a8s7d9f7)
-    invalid_zip_codes.each do |invalid_zip_code|
-      @address.zip_code = invalid_zip_code
-      assert_not @address.valid?
-    end
+  test "is invalid with improper zip code" do
+    @address.zip_code = "888-99"
+    @address.valid?
+    assert @address.errors.messages.keys.include?(:zip_code)
   end
 end
