@@ -11,9 +11,9 @@ class ArticleTest < Minitest::Test
     assert_equal "foo", @article.title
     assert_equal "bar", @article.body
     assert_equal "baz", @article.author
-    assert_equal 0, @article.likes
-    assert_equal 0, @article.dislikes
-    assert_equal Time, @article.created_at.class
+    assert_equal 0    , @article.likes
+    assert_equal 0    , @article.dislikes
+    assert_equal Time , @article.created_at.class
     assert @article.created_at < Time.now
   end
 
@@ -124,5 +124,114 @@ class ArticlesFileSystemTest < Minitest::Test
     assert_equal ["Lorem ipsum" * 3, "Lorem ipsum" * 2], articles.map(&:body)
     assert_equal [0, 2], articles.map(&:likes)
     assert_equal [0, 0], articles.map(&:dislikes)
+  end
+end
+
+class WebPageTest < Minitest::Test
+  def setup
+    @dir = Dir.mktmpdir
+    @webpage = WebPage.new(@dir)
+
+    @article1 = Article.new("foo", "bar", "foobar")
+    @article1.likes = 3
+    @article1.dislikes = 2
+    @article2 = Article.new("fooo", "barr", "foobarr")
+    @article2.likes = 4
+    @article2.dislikes = 2
+  end
+
+  def test_new_without_anything_to_load
+    assert_equal [], @webpage.articles
+  end
+
+  def test_new_article
+    size_before = @webpage.articles.size
+    @webpage.new_article("foo", "bar", "foobar")
+
+    assert_equal size_before + 1, @webpage.articles.size
+  end
+
+  def test_longest_articles
+    @webpage.instance_variable_set(:@articles, [@article1, @article2])
+    articles = @webpage.longest_articles
+
+    assert articles[0].length >= articles[1].length
+  end
+
+  def test_best_articles
+    @webpage.instance_variable_set(:@articles, [@article1, @article2])
+    articles = @webpage.best_articles
+
+    assert articles[0].points >= articles[1].points
+  end
+
+  def test_best_article
+    @webpage.instance_variable_set(:@articles, [@article1, @article2])
+
+    assert_equal @article2, @webpage.best_article
+  end
+
+  def test_best_article_exception_when_no_articles_can_be_found
+    assert_raises(WebPage::NoArticlesFound) { @webpage.best_article }
+  end
+
+  def test_worst_articles
+    @webpage.instance_variable_set(:@articles, [@article1, @article2])
+    articles = @webpage.worst_articles
+
+    assert articles[0].points <= articles[1].points
+  end
+
+  def test_worst_article
+    @webpage.instance_variable_set(:@articles, [@article1, @article2])
+
+    assert_equal @article1, @webpage.worst_article
+  end
+
+  def test_worst_article_exception_when_no_articles_can_be_found
+    assert_raises(WebPage::NoArticlesFound) { @webpage.worst_article }
+  end
+
+  def test_most_controversial_articles
+    @webpage.instance_variable_set(:@articles, [@article1, @article2])
+    articles = @webpage.most_controversial_articles
+
+    assert articles[0].votes >= articles[1].votes
+  end
+
+  def test_votes
+    @webpage.instance_variable_set(:@articles, [@article1, @article2])
+
+    assert_equal 11, @webpage.votes
+  end
+
+  def test_authors
+    @article3 = Article.new("bar", "foo", "foobar")
+    @webpage.instance_variable_set(:@articles, [@article1, @article2, @article3])
+
+    assert_equal %w(foobar foobarr), @webpage.authors
+  end
+
+  def test_authors_statistics
+    @article3 = Article.new("bar", "foo", "foobar")
+    @webpage.instance_variable_set(:@articles, [@article1, @article2, @article3])
+
+    assert_equal 2, @webpage.authors_statistics["foobar"]
+    assert_equal 1, @webpage.authors_statistics["foobarr"]
+  end
+
+  def test_best_author
+    @article3 = Article.new("bar", "foo", "foobar")
+    @webpage.instance_variable_set(:@articles, [@article1, @article2, @article3])
+
+    assert_equal "foobar", @webpage.best_author
+  end
+
+  def test_search
+    @webpage.instance_variable_set(:@articles, [@article1, @article2])
+
+    assert_equal 2, @webpage.search(/[a,b]{2}r/).size
+    assert_equal 1, @webpage.search("rr").size
+    assert @webpage.search("abc").empty?
   end
 end

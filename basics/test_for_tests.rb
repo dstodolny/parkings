@@ -40,7 +40,7 @@ class TestsTest < Minitest::Test
 
   WEB_PAGE_TESTS = %w(
     WebPageTest#test_new_article
-    WebPageTest#test_longest_article
+    WebPageTest#test_longest_articles
     WebPageTest#test_best_articles
     WebPageTest#test_best_article
     WebPageTest#test_best_article_exception_when_no_articles_can_be_found
