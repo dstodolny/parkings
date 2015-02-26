@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   private
 
   def current_person
-    Person.first
+    @current_person ||= Person.first
   end
 end
