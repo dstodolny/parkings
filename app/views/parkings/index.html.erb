@@ -10,7 +10,7 @@
   </tr>
   <% @parkings.each do |parking| %>
   <tr>
-    <td><%= parking.address.city %></td>
+    <td><%= parking.address.try(:city) %></td>
     <td><%= parking.places %></td>
     <td><%= parking.hour_price %></td>
     <td><%= parking.day_price %></td>
