@@ -10,11 +10,11 @@
 
 <h2>Address</h2>
   <address>
-    <%= [@parking.address.zip_code, @parking.address.city].join(", ") %><br>
+    <%= @parking.address.zip_code %>, <%= @parking.address.city %><br>
     <%= @parking.address.street %>
   </address>
 
 <h2>Owner</h2>
-  <p><strong><%= [@parking.owner.first_name, @parking.owner.last_name].join(" ") %></strong></p>
+  <p><strong><%= @parking.owner.full_name %></strong></p>
 
 <p><%= link_to 'Back', parkings_path %></p>
