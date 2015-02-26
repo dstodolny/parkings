@@ -20,7 +20,7 @@
 
   <p>
     <%= f.label :kind %><br>
-    <%= f.select :kind, options_for_select([["Outdoor", "outdoor"], ["Indoor", "indoor"], ["Private", "private"], ["Street", "street"]]) %>
+    <%= f.select :kind, Parking::KINDS.map { |kind| [kind.capitalize, kind] } %>
   </p>
 
   <p>
