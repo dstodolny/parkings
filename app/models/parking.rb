@@ -5,6 +5,8 @@ class Parking < ActiveRecord::Base
   belongs_to :owner, class_name: "Person"
   has_many :place_rents
 
+  accepts_nested_attributes_for :address
+
   validates_presence_of :places, :hour_price, :day_price
   validates_numericality_of :hour_price, :day_price
   validates :kind, inclusion: { in: KINDS }

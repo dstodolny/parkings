@@ -9,6 +9,7 @@ class ParkingsController < ApplicationController
 
   def new
     @parking = Parking.new
+    @parking.build_address
   end
 
   def edit
@@ -28,7 +29,7 @@ class ParkingsController < ApplicationController
   def update
     @parking = Parking.find(params[:id])
 
-    if @parking.update(article_params)
+    if @parking.update(parking_params)
       redirect_to @parking
     else
       render "edit"
@@ -45,6 +46,7 @@ class ParkingsController < ApplicationController
   private
 
   def parking_params
-    params.require(:parking).permit(:places, :kind, :hour_price, :day_price, :address, :owner)
+    params.require(:parking).permit(:places, :kind, :hour_price, :day_price,
+                                    address_attributes: [:street, :zip_code, :city])
   end
 end

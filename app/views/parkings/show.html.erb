@@ -15,6 +15,6 @@
   </address>
 
 <h2>Owner</h2>
-  <p><strong><%= @parking.owner.full_name %></strong></p>
+  <p><strong><%= @parking.owner.try(:full_name) %></strong></p>
 
 <p><%= link_to 'Back', parkings_path %></p>

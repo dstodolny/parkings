@@ -12,8 +12,8 @@
   <tr>
     <td><%= parking.address.try(:city) %></td>
     <td><%= parking.places %></td>
-    <td><%= parking.hour_price %></td>
-    <td><%= parking.day_price %></td>
+    <td>£<%= parking.hour_price %></td>
+    <td>£<%= parking.day_price %></td>
     <td><%= link_to "Show", parking_path(parking) %></td>
     <td><%= link_to "Edit", edit_parking_path(parking) %></td>
     <td><%= link_to "Remove", parking_path(parking), method: :delete %></td>
