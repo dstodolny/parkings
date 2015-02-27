@@ -1,9 +1,9 @@
 class PlaceRentsController < ApplicationController
   def index
-    @place_rents = PlaceRent.all
+    @place_rents = current_user.place_rents.all
   end
 
   def show
-    @place_rent = PlaceRent.find(params[:id])
+    @place_rent = current_user.place_rents.find(params[:id])
   end
 end
