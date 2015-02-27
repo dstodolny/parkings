@@ -1,0 +1,21 @@
+<h1>Place Rent</h1>
+
+<h2>Details</h2>
+<p>
+  <strong>Starts at:</strong> <%= @place_rent.starts_at %><br>
+  <strong>Ends at:</strong> <%= @place_rent.ends_at %><br>
+</p>
+
+<h2>Car</h2>
+<p>
+  <strong>Model:</strong> <%= @place_rent.car.model %><br>
+  <strong>Registration number:</strong> <%= @place_rent.car.registration_number %><br>
+</p>
+
+<h2>Parking</h2>
+  <address>
+    <%= @place_rent.parking.address.zip_code %>, <%= @place_rent.parking.address.city %><br>
+    <%= @place_rent.parking.address.street %>
+  </address>
+
+<p><%= link_to 'Back', place_rents_path %></p>
