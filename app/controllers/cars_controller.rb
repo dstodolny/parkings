@@ -1,10 +1,10 @@
 class CarsController < ApplicationController
   def index
-    @cars = Car.where(owner: current_person)
+    @cars = current_person.cars.all
   end
 
   def show
-    @car = Car.where(owner: current_person).find(params[:id])
+    @car = current_person.cars.find(params[:id])
   end
 
   def new
@@ -12,12 +12,12 @@ class CarsController < ApplicationController
   end
 
   def edit
-    @car = Car.find(params[:id])
+    @car = current_person.cars.find(params[:id])
   end
 
   def create
     @car = Car.new(car_params)
-    @car.owner = current_person
+    current_person.cars.build
 
     if @car.save
       redirect_to @car
@@ -27,7 +27,7 @@ class CarsController < ApplicationController
   end
 
   def update
-    @car = Car.find(params[:id])
+    @car = current_person.cars.find(params[:id])
 
     if @car.update(car_params)
       redirect_to @car
@@ -37,7 +37,7 @@ class CarsController < ApplicationController
   end
 
   def destroy
-    @car = Car.find(params[:id])
+    @car = current_person.cars.find(params[:id])
     @car.destroy
 
     redirect_to cars_path
