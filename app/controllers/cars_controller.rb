@@ -8,7 +8,7 @@ class CarsController < ApplicationController
   end
 
   def new
-    @car = Car.new
+    @car = current_person.cars.build
   end
 
   def edit
@@ -16,8 +16,7 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = Car.new(car_params)
-    current_person.cars.build
+    @car = current_person.cars.build(car_params)
 
     if @car.save
       redirect_to @car
