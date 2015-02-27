@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :parkings
+  resources :parkings do
+    resources :place_rents, only: [:new, :create]
+  end
   resources :cars
-  resources :place_rents
+  resources :place_rents, only: [:index, :show]
 
   root "parkings#index"
 

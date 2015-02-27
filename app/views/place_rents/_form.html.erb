@@ -1,0 +1,34 @@
+<%= form_for([@parking, @place_rent]) do |f| %>
+
+  <% if @place_rent.errors.any? %>
+    <div>
+      <h2>
+        <%= pluralize(@place_rent.errors.count, "error") %> prohibited this place rent from being saved:
+      </h2>
+      <ul>
+        <% @place_rent.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :starts_at %><br>
+    <%= f.datetime_select :starts_at, :ampm => true, :minute_step => 15 %>
+  </p>
+
+  <p>
+    <%= f.label :ends_at %><br>
+    <%= f.datetime_select :ends_at, :ampm => true, :minute_step => 15 %>
+  </p>
+
+  <p>
+    <%= f.label :car %><br>
+    <%= f.collection_select :car_id, Car.order(:model), :id, :model, include_blank: false %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
