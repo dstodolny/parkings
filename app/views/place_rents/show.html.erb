@@ -2,8 +2,8 @@
 
 <h2>Details</h2>
 <p>
-  <strong>Starts at:</strong> <%= @place_rent.starts_at %><br>
-  <strong>Ends at:</strong> <%= @place_rent.ends_at %><br>
+  <strong>Starts at:</strong> <%= @place_rent.starts_at.to_formatted_s(:long_ordinal) %><br>
+  <strong>Ends at:</strong> <%= @place_rent.ends_at.to_formatted_s(:long_ordinal) %><br>
 </p>
 
 <h2>Car</h2>

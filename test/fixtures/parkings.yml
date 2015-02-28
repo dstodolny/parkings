@@ -13,5 +13,5 @@ two:
   kind:       private
   hour_price: 10
   day_price:  100
-  address: one
+  address: two
   owner: two
