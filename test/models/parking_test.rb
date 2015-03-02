@@ -54,4 +54,13 @@ class ParkingTest < ActiveSupport::TestCase
     @parking.valid?
     assert @parking.errors.messages.keys.include?(:kind)
   end
+
+  test "just before destroy all rentals ends at current time" do
+    time = DateTime.now
+    car = cars(:one)
+    @place_rent = @parking.place_rents.build(starts_at: time - 1, ends_at: time + 1, car: car)
+
+    @parking.destroy
+    assert_in_delta time.to_i, @place_rent.ends_at.to_i, 5
+  end
 end

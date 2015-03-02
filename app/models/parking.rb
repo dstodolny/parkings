@@ -10,4 +10,8 @@ class Parking < ActiveRecord::Base
   validates_presence_of :places, :hour_price, :day_price
   validates_numericality_of :hour_price, :day_price
   validates :kind, inclusion: { in: KINDS }
+
+  before_destroy do
+    place_rents.each { |place_rent| place_rent.ends_at = Time.now }
+  end
 end
