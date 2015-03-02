@@ -21,5 +21,10 @@
     <%= label_tag :private %>
   </p>
 
+  <p>
+    <%= check_box_tag :public, :public, params[:public] %>
+    <%= label_tag :public %>
+  </p>
+
   <p><%= submit_tag "Submit" %></p>
 <% end %>

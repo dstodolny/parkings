@@ -3,24 +3,28 @@
 <%= render 'search' %>
 
 <%= link_to "New parking", new_parking_path %>
-<table>
-  <tr>
-    <th>City</th>
-    <th>Places</th>
-    <th>Hour price</th>
-    <th>Day price</th>
-    <th colspan="4"></th>
-  </tr>
-  <% @parkings.each do |parking| %>
-  <tr>
-    <td><%= parking.address.try(:city) %></td>
-    <td><%= parking.places %></td>
-    <td>£<%= parking.hour_price %></td>
-    <td>£<%= parking.day_price %></td>
-    <td><%= link_to "Rent a place", new_parking_place_rent_path(parking) %></td>
-    <td><%= link_to "Show", parking_path(parking) %></td>
-    <td><%= link_to "Edit", edit_parking_path(parking) %></td>
-    <td><%= link_to "Remove", parking_path(parking), method: :delete %></td>
-  </tr>
-  <% end %>
-</table>
+<% if @parkings.size > 0 %>
+  <table>
+    <tr>
+      <th>City</th>
+      <th>Places</th>
+      <th>Hour price</th>
+      <th>Day price</th>
+      <th colspan="4"></th>
+    </tr>
+    <% @parkings.each do |parking| %>
+    <tr>
+      <td><%= parking.address.try(:city) %></td>
+      <td><%= parking.places %></td>
+      <td>£<%= parking.hour_price %></td>
+      <td>£<%= parking.day_price %></td>
+      <td><%= link_to "Rent a place", new_parking_place_rent_path(parking) %></td>
+      <td><%= link_to "Show", parking_path(parking) %></td>
+      <td><%= link_to "Edit", edit_parking_path(parking) %></td>
+      <td><%= link_to "Remove", parking_path(parking), method: :delete %></td>
+    </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>No results found</p>
+<% end %>
