@@ -2,14 +2,14 @@
 
 one:
   starts_at: 2015-02-25 13:21:28
-  ends_at: 2015-02-25 13:21:28
-  price: 1.5
+  ends_at: 2015-02-26 14:21:28
+  price: 77
   parking: one
   car: two
 
 two:
   starts_at: 2015-02-25 13:21:28
-  ends_at: 2015-02-25 13:21:28
-  price: 1.5
+  ends_at: 2015-02-27 12:21:28
+  price: 190
   parking: two
   car: one

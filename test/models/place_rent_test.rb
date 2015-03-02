@@ -33,4 +33,8 @@ class PlaceRentTest < ActiveSupport::TestCase
     @place_rent.valid?
     assert @place_rent.errors.messages.keys.include?(:car)
   end
+
+  test "is calculating correct price" do
+    assert_equal 77, @place_rent.calculate_price
+  end
 end

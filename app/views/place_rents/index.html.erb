@@ -4,14 +4,16 @@
   <tr>
     <th>Starts at</th>
     <th>Ends at</th>
+    <th>Price</th>
     <th>Car</th>
     <th>Parking</th>
-    <th colspan="3"></th>
+    <th></th>
   </tr>
   <% @place_rents.each do |place_rent| %>
   <tr>
     <td><%= place_rent.starts_at.to_formatted_s(:long_ordinal) %></td>
     <td><%= place_rent.ends_at.to_formatted_s(:long_ordinal) %></td>
+    <td><%= place_rent.price %></td>
     <td><%= link_to "Car", place_rent.car %></td>
     <td><%= link_to "Parking", place_rent.parking %></td>
     <td><%= link_to "Show", place_rent_path(place_rent) %></td>
