@@ -15,7 +15,7 @@ class Parking < ActiveRecord::Base
     place_rents.each { |place_rent| place_rent.ends_at = Time.now }
   end
 
-  scope :public_parkings, -> { where("kind IS NOT 'private'")  }
+  scope :public_parkings, -> { where.not(kind: "private")  }
   scope :private_parkings, -> { where kind: "private" }
   scope :day_price_from_to, ->(from, to) { where("day_price >= ? AND day_price <= ?", from, to) }
   scope :hour_price_from_to, ->(from, to) { where("hour_price >= ? AND hour_price <= ?", from, to) }
