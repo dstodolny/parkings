@@ -55,4 +55,30 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     all("tr").count == elements - 1
   end
+
+  test "search form is displayed" do
+    visit "/parkings"
+
+    assert has_content? "Search Parking"
+  end
+
+  test "data stays after submiting the form" do
+    visit "/parkings"
+
+    fill_in "City name", with: "London"
+    fill_in "day_price_min", with: "90"
+    fill_in "day_price_max", with: "110"
+    fill_in "hour_price_min", with: "9"
+    fill_in "hour_price_max", with: "11"
+    find(:css, "#private[value='private']").set(true)
+
+    click_button "Submit"
+
+    assert_equal "London", find_field("City name").value
+    assert_equal "90", find_field("day_price_min").value
+    assert_equal "110", find_field("day_price_max").value
+    assert_equal "9", find_field("hour_price_min").value
+    assert_equal "11", find_field("hour_price_max").value
+    assert_equal "checked", find(:css, "#private[value='private']").checked?
+  end
 end
