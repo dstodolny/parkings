@@ -3,6 +3,10 @@ class PlaceRent < ActiveRecord::Base
   belongs_to :car
   validates_presence_of :starts_at, :ends_at, :parking, :car
 
+  before_save do
+    self.price = calculate_price
+  end
+
   def calculate_price
     days, hours = days_hours(starts_at, ends_at)
 
