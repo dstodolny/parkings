@@ -10,15 +10,13 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   test "user opens car details" do
-    fields = []
     visit "/cars"
 
-    within first("a", text: "Show").find(:xpath, "../..") do
-      2.times { |i| fields[i] = all("td")[i].text }
-      click_link("Show")
-    end
+    first("a", text: "Show").click
 
-    assert fields.all? { |field| has_content? field }
+    assert has_content? "Car details"
+    assert has_content? "Ford Mustang"
+    assert has_content? "BBB1111"
   end
 
   test "user adds a new car" do
@@ -45,9 +43,8 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   test "user removes a car" do
     visit "/cars"
 
-    elements = all("tr").count
     first("a", text: "Remove").click
 
-    all("tr").count == elements - 1
+    assert has_no_content? "Ford Mustang"
   end
 end
