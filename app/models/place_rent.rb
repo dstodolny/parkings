@@ -19,7 +19,7 @@ class PlaceRent < ActiveRecord::Base
     diff = end_time.to_i - start_time.to_i
 
     days = diff / (24 * 3600)
-    hours = ((diff - (days * 24 * 3600)) / 3600.0).ceil
+    hours = ((diff % (24 * 3600)) / 3600.0).ceil
 
     [days, hours]
   end
