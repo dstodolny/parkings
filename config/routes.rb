@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   end
   resources :cars
   resources :place_rents, only: [:index, :show]
+  resources :sessions
+  resources :accounts
 
   root "parkings#index"
 

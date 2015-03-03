@@ -1,0 +1,43 @@
+<%= form_for @account do |f| %>
+  <% if @account.errors.any? %>
+    <div>
+      <h2>
+        <%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:
+      </h2>
+      <ul>
+        <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password %>
+  </p>
+
+  <%= f.fields_for :person do |person_fields| %>
+  <p>
+    <%= person_fields.label :first_name %><br>
+    <%= person_fields.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= person_fields.label :last_name %><br>
+    <%= person_fields.text_field :last_name %>
+  </p>
+  <% end %>
+
+  <p><%= f.submit %></p>
+<% end %>
