@@ -55,10 +55,19 @@ class ParkingTest < ActiveSupport::TestCase
     assert @parking.errors.messages.keys.include?(:kind)
   end
 
-  test "just before destroy all rentals ends at current time" do
+  test "just before destroy all rentals with a future end time, ends at current time" do
     time = DateTime.now
     car = cars(:one)
-    @place_rent = @parking.place_rents.build(starts_at: time - 1, ends_at: time + 1, car: car)
+    @place_rent = @parking.place_rents.build(starts_at: time - 10, ends_at: time + 100, car: car)
+
+    @parking.destroy
+    assert_in_delta time.to_i, @place_rent.ends_at.to_i, 5
+  end
+
+  test "end date from a place rent that is already finished, is not modified" do
+    time = DateTime.now - 50
+    car = cars(:one)
+    @place_rent = @parking.place_rents.build(starts_at: time - 10, ends_at: time, car: car)
 
     @parking.destroy
     assert_in_delta time.to_i, @place_rent.ends_at.to_i, 5

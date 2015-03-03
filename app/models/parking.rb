@@ -12,7 +12,7 @@ class Parking < ActiveRecord::Base
   validates :kind, inclusion: { in: KINDS }
 
   before_destroy do
-    place_rents.each { |place_rent| place_rent.ends_at = Time.now }
+    place_rents.each { |place_rent| place_rent.ends_at = Time.now if place_rent.ends_at > Time.now }
   end
 
   scope :public_parkings, -> { where.not(kind: "private")  }
