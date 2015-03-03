@@ -1,5 +1,4 @@
 class PlaceRentsController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :car_is_someones_else
   before_action do
     session[:return_to] = request.original_url
     authorize
@@ -34,9 +33,5 @@ class PlaceRentsController < ApplicationController
 
   def parking
     @parking ||= Parking.find(params[:parking_id])
-  end
-
-  def car_is_someones_else
-    redirect_to place_rents_path, flash: { error: "Current person doesn't own that car." }
   end
 end
