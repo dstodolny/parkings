@@ -41,7 +41,6 @@ class PlaceRentTest < ActiveSupport::TestCase
   test "correct price is being saved in place rent object" do
     parking = parkings(:two)
     car = cars(:one)
-    time = "02/03/2015 22:30".to_time
 
     @place_rent = parking.place_rents.build(starts_at: "01/03/2015 22:30".to_time, ends_at: "02/03/2015 22:30".to_time, car: car)
     @place_rent.save
