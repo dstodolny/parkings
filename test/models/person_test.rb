@@ -15,4 +15,11 @@ class PersonTest < ActiveSupport::TestCase
     @person.valid?
     assert @person.errors.messages.keys.include?(:first_name)
   end
+
+  test "full name is displayed properly" do
+    person1 = Person.new(first_name: "Dominik")
+    person2 = Person.new(first_name: "Dominik", last_name: "Stodolny")
+    assert_equal "Dominik", person1.full_name
+    assert_equal "Dominik Stodolny", person2.full_name
+  end
 end

@@ -6,6 +6,6 @@ class Person < ActiveRecord::Base
   validates :first_name, presence: true
 
   def full_name
-    last_name.nil? ? first_name : [first_name, last_name].join(' ')
+    [first_name, last_name].compact.join(' ')
   end
 end
