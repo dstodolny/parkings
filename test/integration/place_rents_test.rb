@@ -4,6 +4,17 @@ require 'capybara/rails'
 class ParkingsTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
 
+  setup do
+    visit "/sessions/new"
+    fill_in "Email", with: "jan@kowalski.pl"
+    fill_in "Password", with: "87654321"
+    click_button "Log In"
+  end
+
+  teardown do
+    Capybara.reset!
+  end
+
   test "user opens place rents index" do
     visit "/place_rents"
     assert has_content? "Place Rents"

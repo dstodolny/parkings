@@ -15,7 +15,12 @@
 </ul>
 
 <p>
-Hello <%= current_person.full_name %>
+  <% if current_person %>
+    Hello <%= current_person.full_name %>
+  <% else %>
+    <%= link_to "Sign up", new_account_path %> |
+    <%= link_to "Log in", new_session_path %>
+  <% end %>
 </p>
 
 <%= yield %>
