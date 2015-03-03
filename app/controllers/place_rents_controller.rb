@@ -1,6 +1,9 @@
 class PlaceRentsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :car_is_someones_else
-  before_filter :authorize
+  before_action do
+    session[:return_to] = request.original_url
+    authorize
+  end
 
   def index
     @place_rents = current_person.place_rents.all

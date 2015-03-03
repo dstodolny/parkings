@@ -30,4 +30,15 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     assert has_content? "Logged out."
   end
+
+  test "user is redirected to cars if he logs in" do
+    click_link "Log out"
+    visit "/cars"
+
+    fill_in "Email", with: "d.stodolny@gmail.com"
+    fill_in "Password", with: "12345678"
+    click_button "Log In"
+
+    assert has_content? "Fiat Punto"
+  end
 end
