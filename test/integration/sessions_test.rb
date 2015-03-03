@@ -19,4 +19,16 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     assert has_no_content? "Dominik Stodolny"
   end
+
+  test "user logs out" do
+    visit "/sessions/new"
+
+    fill_in "email", with: "jan@kowalski@gmail.com"
+    fill_in "password", with: "87654321"
+    click_button "Log In"
+
+    click_link "Log out"
+
+    assert has_content? "Logged out."
+  end
 end

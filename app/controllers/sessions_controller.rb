@@ -12,4 +12,9 @@ class SessionsController < ApplicationController
       render "new"
     end
   end
+
+  def destroy
+    session[:account_id] = nil
+    redirect_to root_url, flash: { success: "Logged out." }
+  end
 end
