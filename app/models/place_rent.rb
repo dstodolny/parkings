@@ -13,6 +13,10 @@ class PlaceRent < ActiveRecord::Base
     parking.day_price * days + parking.hour_price * hours
   end
 
+  def finish
+    self.ends_at = Time.now if ends_at > Time.now
+  end
+
   private
 
   def days_hours(start_time, end_time)
