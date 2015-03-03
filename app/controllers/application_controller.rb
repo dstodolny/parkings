@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def current_person
     @current_person ||= Account.find(session[:account_id]).person if session[:account_id]
   end
+
+  def authorize
+    redirect_to new_session_path, flash: { error: "Not authorized" } if current_person.nil?
+  end
 end

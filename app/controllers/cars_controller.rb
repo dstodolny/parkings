@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :car_not_found
+  before_filter :authorize
 
   def index
     @cars = current_person.cars.all
