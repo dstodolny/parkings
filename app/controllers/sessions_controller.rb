@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    account = Account.find_by_email(params[:email])
+    account = Account.authenticate(params[:email], params[:password])
     if account
       session[:account_id] = account.id
       redirect_to root_url, flash: { success: "You have been logged in." }

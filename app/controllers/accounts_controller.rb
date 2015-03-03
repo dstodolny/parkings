@@ -7,6 +7,7 @@ class AccountsController < ActionController::Base
   def create
     @account = Account.new(account_params)
     if @account.save
+      session[:account_id] = @account.id
       redirect_to root_url, flash: { success: "Account has been successfully created." }
     else
       render "new"
