@@ -1,4 +1,6 @@
 class ParkingsController < ApplicationController
+  around_filter :catch_not_found
+
   def index
     @parkings = search(params)
   end
@@ -58,5 +60,11 @@ class ParkingsController < ApplicationController
     parkings = parkings.hour_price_from_to(params[:hour_price_min], params[:hour_price_max]) if params[:hour_price_min].present? && params[:hour_price_max].present?
     parkings = parkings.in_city(params[:city_name]) if params[:city_name].present?
     parkings
+  end
+
+  def catch_not_found
+    yield
+  rescue ActiveRecord::RecordNotFound
+    redirect_to parkings_path, flash: { error: "Parking not found." }
   end
 end

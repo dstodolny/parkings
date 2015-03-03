@@ -1,4 +1,8 @@
 <h1>Cars</h1>
+<% flash.each do |message_type, message| %>
+  <p><%= message %></p>
+<% end %>
+
 <%= link_to "New car", new_car_path %>
 <table>
   <tr>
