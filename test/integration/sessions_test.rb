@@ -2,7 +2,6 @@ require 'test_helper'
 require 'capybara/rails'
 
 class ParkingsTest < ActionDispatch::IntegrationTest
-  include Capybara::DSL
 
   test "user logs in" do
     visit "/sessions/new"
