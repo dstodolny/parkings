@@ -84,4 +84,99 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     assert_equal "11", find_field("hour_price_max").value
     assert_equal "checked", find(:css, "#private[value='private']").checked?
   end
+
+  test "index displays parkings that match the given city name" do
+    visit "/parkings"
+
+    fill_in "City name", with: "London"
+    click_button "Submit"
+
+    assert has_content? "London"
+    assert has_no_content? "Warszawa"
+  end
+
+  test "index don't display parkings that don't match the given city name" do
+    visit "/parkings"
+
+    fill_in "City name", with: "Cracow"
+    click_button "Submit"
+
+    assert has_no_content? "London"
+    assert has_no_content? "Warszawa"
+  end
+
+  test "index displays parkigns that are within the given day price range" do
+    visit "/parkings"
+
+    fill_in "day_price_min", with: "70"
+    fill_in "day_price_max", with: "100"
+    click_button "Submit"
+
+    assert has_content? "Warszawa"
+    assert has_content? "London"
+  end
+
+  test "index don't display parkings that are outside of the given day price range" do
+    visit "/parkings"
+
+    fill_in "day_price_min", with: "110"
+    fill_in "day_price_max", with: "150"
+    click_button "Submit"
+
+    assert has_no_content? "Warszawa"
+    assert has_no_content? "London"
+  end
+
+  test "index displays parkings that are within the given hour price range" do
+    visit "/parkings"
+
+    fill_in "hour_price_min", with: "7"
+    fill_in "hour_price_max", with: "10"
+    click_button "Submit"
+
+    assert has_content? "Warszawa"
+    assert has_content? "London"
+  end
+
+  test "index don't display parkings that are outside of the given hour price range" do
+    visit "/parkings"
+
+    fill_in "hour_price_min", with: "11"
+    fill_in "hour_price_max", with: "15"
+    click_button "Submit"
+
+    assert has_no_content? "Warszawa"
+    assert has_no_content? "London"
+  end
+
+  test "index displays private parkings" do
+    visit "/parkings"
+
+    find(:css, "#private[value='private']").set(true)
+    click_button "Submit"
+
+    assert has_content? "Warszawa"
+    assert has_no_content? "London"
+  end
+
+  test "index displays public parkings" do
+    visit "/parkings"
+
+    find(:css, "#public[value='public']").set(true)
+    click_button "Submit"
+
+    assert has_content? "London"
+    assert has_no_content? "Warszawa"
+  end
+
+  test "index displays no parkings when both private and public where chosen" do
+    visit "/parkings"
+
+    find(:css, "#private[value='private']").set(true)
+    find(:css, "#public[value='public']").set(true)
+    click_button "Submit"
+
+    assert has_no_content? "London"
+    assert has_no_content? "Warszawa"
+  end
 end
