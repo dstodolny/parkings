@@ -13,7 +13,10 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     time = "02/03/2015 22:30".to_time
     visit "/parkings"
 
-    first("a", text: "Rent a place").click
+    within page.all("tr")[1] do
+      @city = all("td")[0].text
+      click_link("Rent a place")
+    end
 
     select_date_and_time(time - 1, from: "Starts at")
     select_date_and_time(time, from: "Ends at")
@@ -23,7 +26,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     assert has_content? "Ford Mustang"
     assert has_content?((time - 1).to_formatted_s(:long_ordinal))
     assert has_content? time.to_formatted_s(:long_ordinal)
-    assert has_content? "Warszawa"
+    assert has_content? @city
   end
 
   test "user can see a price in place rents list" do

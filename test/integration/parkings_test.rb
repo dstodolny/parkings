@@ -10,13 +10,16 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   test "user opens parking details" do
+    content = []
     visit "/parkings"
+    within page.all("tr")[1] do
+      content[0] = all("td")[0].text
+      content[1] = all("td")[1].text
+      click_link("Show")
+    end
 
-    first("a", text: "Show").click
-
-    assert has_content?("Details")
-    assert has_content?("Warszawa")
-    assert has_content?("Jan Kowalski")
+    assert has_content? content[0]
+    assert has_content? content[1]
   end
 
   test "user adds a new parking" do
@@ -48,9 +51,12 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   test "user removes a parking" do
     visit "/parkings"
 
-    first("a", text: "Remove").click
+    within page.all("tr")[1] do
+      @city = all("td")[0].text
+      click_link("Remove")
+    end
 
-    assert has_no_content? "Warszawa"
+    assert has_no_content? @city
   end
 
   test "search form is displayed" do
