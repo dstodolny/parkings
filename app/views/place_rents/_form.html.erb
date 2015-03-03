@@ -25,7 +25,7 @@
 
   <p>
     <%= f.label :car_id %><br>
-    <%= f.collection_select :car_id, Car.order(:model), :id, :model, include_blank: false %>
+    <%= f.collection_select :car_id, current_person.cars.order(:model), :id, :model, include_blank: false %>
   </p>
 
   <p>

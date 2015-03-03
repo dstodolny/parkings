@@ -9,3 +9,8 @@ two:
   registration_number: BBB1111
   model: Ford Mustang
   owner: two
+
+three:
+  registration_number: CCC2222
+  model: Fiat Punto
+  owner: one

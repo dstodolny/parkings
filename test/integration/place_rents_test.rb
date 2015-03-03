@@ -24,8 +24,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     time = "02/03/2015 22:30".to_time
     visit "/parkings"
 
-    within page.all("tr")[1] do
-      @city = all("td")[0].text
+    within first("tr", text: "Warszawa") do
       click_link("Rent a place")
     end
 
@@ -35,19 +34,16 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     click_button "Create Place rent"
     assert has_content? "Ford Mustang"
-    assert has_content?((time - 1).to_formatted_s(:long_ordinal))
-    assert has_content? time.to_formatted_s(:long_ordinal)
-    assert has_content? @city
+    assert has_content? "March 2nd, 2015 22:29"
+    assert has_content? "March 2nd, 2015 22:30"
+    assert has_content? "Warszawa"
   end
 
   test "user can see a price in place rents list" do
     visit "/place_rents"
 
     assert has_content? "Price"
-
-    within first("a", text: "Show").find(:xpath, "../..") do
-      assert_equal "77.0", all("td")[2].text
-    end
+    assert has_content? "77.0"
   end
 
   private

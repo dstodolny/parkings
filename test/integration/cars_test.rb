@@ -21,16 +21,13 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   test "user opens car details" do
-    content = []
     visit "/cars"
-    within page.all("tr")[1] do
-      content[0] = all("td")[0].text
-      content[1] = all("td")[1].text
+    within first("tr", text: "Ford Mustang") do
       click_link("Show")
     end
 
-    assert has_content? content[0]
-    assert has_content? content[1]
+    assert has_content? "Ford Mustang"
+    assert has_content? "BBB1111"
   end
 
   test "user adds a new car" do
@@ -56,11 +53,10 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test "user removes a car" do
     visit "/cars"
-    within page.all("tr")[1] do
-      @model = all("td")[0].text
+    within first("tr", text: "Ford Mustang") do
       click_link("Remove")
     end
 
-    assert has_no_content? @model
+    assert has_no_content? "Ford Mustang"
   end
 end
