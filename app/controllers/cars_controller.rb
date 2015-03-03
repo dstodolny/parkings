@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  around_filter :catch_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :car_not_found
 
   def index
     @cars = current_person.cars.all
@@ -50,9 +50,7 @@ class CarsController < ApplicationController
     params.require(:car).permit(:model, :registration_number)
   end
 
-  def catch_not_found
-    yield
-  rescue ActiveRecord::RecordNotFound
+  def car_not_found
     redirect_to cars_path, flash: { error: "Car not found." }
   end
 end

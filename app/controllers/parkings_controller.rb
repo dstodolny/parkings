@@ -1,5 +1,5 @@
 class ParkingsController < ApplicationController
-  around_filter :catch_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :parking_not_found
 
   def index
     @parkings = search(params)
@@ -62,9 +62,7 @@ class ParkingsController < ApplicationController
     parkings
   end
 
-  def catch_not_found
-    yield
-  rescue ActiveRecord::RecordNotFound
+  def parking_not_found
     redirect_to parkings_path, flash: { error: "Parking not found." }
   end
 end
