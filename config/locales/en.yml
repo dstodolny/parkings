@@ -11,6 +11,9 @@ en:
     log_out: "Log out"
     sign_up: "Sign_up"
     log_in: "Log_in"
+    language: "Language"
+    english: "English"
+    polish: "Polish"
   accounts:
     form:
       error: "prohibited this account from being saved:"

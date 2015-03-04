@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_person
 
+  before_action :set_locale
+
+  def set_locale
+    session[:locale] = params[:locale] if params[:locale]
+
+    I18n.locale = session[:locale] || locale_from_header || I18n.default_locale
+  end
+
   private
 
   def current_person
@@ -12,5 +20,9 @@ class ApplicationController < ActionController::Base
 
   def authorize
     redirect_to new_session_path, flash: { error: "Not authorized" } if current_person.nil?
+  end
+
+  def locale_from_header
+    request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
   end
 end

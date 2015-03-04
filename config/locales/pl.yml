@@ -11,6 +11,9 @@ pl:
     log_out: "Wyloguj"
     sign_up: "Zarejestruj się"
     log_in: "Zaloguj"
+    language: "Język"
+    english: "Angielski"
+    polish: "Polski"
   accounts:
     form:
       error: "uniemożliwiły zapisanie tego konta:"
