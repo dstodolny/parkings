@@ -1,0 +1,18 @@
+%h1 Place Rents
+
+%table
+  %tr
+    %th Starts at
+    %th Ends at
+    %th Price
+    %th Car
+    %th Parking
+    %th
+  - @place_rents.each do |place_rent|
+    %tr
+      %td= place_rent.starts_at.to_formatted_s(:long_ordinal)
+      %td= place_rent.ends_at.to_formatted_s(:long_ordinal)
+      %td= place_rent.price
+      %td= link_to "Car", place_rent.car
+      %td= link_to "Parking", place_rent.parking
+      %td= link_to "Show", place_rent_path(place_rent)

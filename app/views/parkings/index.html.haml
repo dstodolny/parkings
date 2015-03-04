@@ -1,0 +1,23 @@
+%h1 Parkings
+= render "search"
+= link_to "New parking", new_parking_path
+- if @parkings.size > 0
+  %table
+    %tr
+      %th City
+      %th Places
+      %th Hour price
+      %th Day price
+      %th{colspan: 4}
+    - @parkings.each do |parking|
+      %tr
+        %td= parking.address.try(:city)
+        %td= parking.places
+        %td= parking.hour_price
+        %td= parking.day_price
+        %td= link_to "Rent a place", new_parking_place_rent_path(parking)
+        %td= link_to "Show", parking_path(parking)
+        %td= link_to "Edit", edit_parking_path(parking)
+        %td= link_to "Remove", parking_path(parking), method: :delete
+- else
+  %p No results found

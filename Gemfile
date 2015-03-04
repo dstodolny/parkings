@@ -26,6 +26,7 @@ gem 'capybara'
 gem 'bcrypt'
 gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
+gem 'haml'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
