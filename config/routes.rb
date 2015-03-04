@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   root "parkings#index"
 
+  get "register", to: "accounts#new"
+  get "login", to: "sessions#new"
+  get "logout", to: "sessions#destroy"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
