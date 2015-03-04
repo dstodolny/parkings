@@ -7,26 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render partial: 'flash' %>
-<ul>
-  <li><%= link_to "Parkings", parkings_path %></li>
-  <% if current_person %>
-  <li><%= link_to "Cars", cars_path %></li>
-  <li><%= link_to "Place Rents", place_rents_path %></li>
-  <% end %>
-</ul>
+  <%= render 'layouts/header' %>
+  <div class="container">
+    <%= render 'layouts/flash' %>
 
-<p>
-  <% if current_person %>
-    Hello <%= current_person.full_name %> |
-    <%= link_to "Log out", logout_path %>
-  <% else %>
-    <%= link_to "Sign up", register_path %> |
-    <%= link_to "Log in", login_path %>
-  <% end %>
-</p>
-
-<%= yield %>
-
+    <%= yield %>
+  </div>
 </body>
 </html>
