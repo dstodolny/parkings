@@ -41,6 +41,12 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     assert has_content? "77.0"
   end
 
+  test "user can access a place rent by a slug" do
+    visit "/place_rents/abcdefghijklmnop"
+
+    assert has_content? "Details"
+  end
+
   private
 
   def select_date_and_time(date, options = {})

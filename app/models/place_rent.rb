@@ -5,6 +5,7 @@ class PlaceRent < ActiveRecord::Base
 
   before_save do
     self.price = calculate_price
+    self.slug = to_slug
   end
 
   def calculate_price
@@ -15,6 +16,14 @@ class PlaceRent < ActiveRecord::Base
 
   def finish
     self.ends_at = Time.now if ends_at > Time.now
+  end
+
+  def to_slug
+    (0..15).map { ('a'..'z').to_a[rand(26)] }.join
+  end
+
+  def to_param
+    slug
   end
 
   private

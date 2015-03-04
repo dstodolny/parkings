@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303172556) do
+ActiveRecord::Schema.define(version: 20150304104417) do
 
   create_table "accounts", force: :cascade do |t|
     t.string   "email"
@@ -68,9 +68,11 @@ ActiveRecord::Schema.define(version: 20150303172556) do
     t.integer  "car_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
   add_index "place_rents", ["car_id"], name: "index_place_rents_on_car_id"
   add_index "place_rents", ["parking_id"], name: "index_place_rents_on_parking_id"
+  add_index "place_rents", ["slug"], name: "index_place_rents_on_slug", unique: true
 
 end

@@ -9,7 +9,7 @@ class PlaceRentsController < ApplicationController
   end
 
   def show
-    @place_rent = current_person.place_rents.find(params[:id])
+    @place_rent = current_person.place_rents.find_by_slug(params[:id]) || current_person.place_rents.find(params[:id])
   end
 
   def new
