@@ -24,6 +24,7 @@ gem 'capybara'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
+gem 'bootstrap-sass'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
