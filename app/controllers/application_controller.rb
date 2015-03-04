@@ -23,6 +23,6 @@ class ApplicationController < ActionController::Base
   end
 
   def locale_from_header
-    request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+    request.env['HTTP_ACCEPT_LANGUAGE'].try(:scan, /^[a-z]{2}/).try(:first)
   end
 end
