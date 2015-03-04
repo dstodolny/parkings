@@ -17,7 +17,7 @@ class AccountsController < ActionController::Base
   private
 
   def account_params
-    params.require(:account).permit(:email,
+    params.require(:account).permit(:email, :password, :password_confirmation,
                                     person_attributes: [:first_name, :last_name])
   end
 end
