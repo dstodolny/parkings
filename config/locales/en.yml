@@ -1,23 +1,70 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  general:
+    show: "Show"
+    edit: "Edit"
+    remove: "Remove"
+    back: "Back"
+  menu:
+    parkings: "Parkings"
+    cars: "Cars"
+    place_rents: "Place Rents"
+    log_out: "Log out"
+    sign_up: "Sign_up"
+    log_in: "Log_in"
+  accounts:
+    form:
+      error: "prohibited this account from being saved:"
+    new:
+      title: "New Account"
+  cars:
+    form:
+      error: "prohibited this car from being saved:"
+    edit:
+      title: "Editing car"
+    index:
+      title: "New car"
+      model: "Model"
+      registration_number: "Registration number"
+  parkings:
+    form:
+      error: "prohibited this parking from being saved:"
+      places: "Places"
+      kind: "Kind"
+      hour_price: "Hour price"
+      day_price: "Day price"
+      address: "Address"
+      city: "City"
+      street: "Street"
+      zip_code: "Zip code"
+    search:
+      title: "Search Parking"
+      day_price_range: "Day Price Range"
+      hour_price_range: "Hour Price Range"
+      submit: "Submit"
+      city: "City name"
+      private: "Private"
+      public: "Public"
+    edit:
+      title: "Editing parking"
+    index:
+      title: "Parkings"
+      new_parking: "New parking"
+      city: "City"
+      places: "Places"
+      hour_price: "Hour price"
+      day_price: "Day price"
+      rent_a_place: "Rent a place"
+      no_results: "No results found"
+    new:
+      title: "New Parking"
+    show:
+      parking: "parking"
+      detail: "Details"
+      places: "Places"
+      kind: "Kind"
+      hour_price: "Hour price"
+      day_price: "Day price"
+      address: "Address"
+      owner: "Owner"
+    flash:
+      not_fount: "Parking not found."

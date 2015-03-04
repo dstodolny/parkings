@@ -1,20 +1,20 @@
-<h1><%= @parking.kind.capitalize %> parking</h1>
+<h1><%= @parking.kind.capitalize %> <%= t("parkings.show.parking") %></h1>
 
-<h2>Details</h2>
+<h2><%= t("parkings.show.details") %></h2>
   <p>
-    <strong>Places:</strong> <%= @parking.places %><br>
-    <strong>Kind:</strong> <%= @parking.kind %><br>
-    <strong>Hour price:</strong> £<%= @parking.hour_price %><br>
-    <strong>Day price:</strong> £<%= @parking.day_price %>
+    <strong><%= t("parkings.show.places") %>:</strong> <%= @parking.places %><br>
+    <strong><%= t("parkings.show.kind") %>:</strong> <%= @parking.kind %><br>
+    <strong><%= t("parkings.show.hour_price") %>:</strong> £<%= @parking.hour_price %><br>
+    <strong><%= t("parkings.show.day_price") %>:</strong> £<%= @parking.day_price %>
   </p>
 
-<h2>Address</h2>
+<h2><%= t("parkings.show.address") %></h2>
   <address>
     <%= @parking.address.zip_code %>, <%= @parking.address.city %><br>
     <%= @parking.address.street %>
   </address>
 
-<h2>Owner</h2>
+<h2><%= t("parkings.show.owner") %></h2>
   <p><strong><%= @parking.owner.try(:full_name) %></strong></p>
 
-<p><%= link_to 'Back', parkings_path %></p>
+<p><%= link_to t("general.back"), parkings_path %></p>

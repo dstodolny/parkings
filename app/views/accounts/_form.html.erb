@@ -2,7 +2,7 @@
   <% if @account.errors.any? %>
     <div>
       <h2>
-        <%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:
+        <%= pluralize(@account.errors.count, "error") %> <%= t("accounts.form.error") %>
       </h2>
       <ul>
         <% @account.errors.full_messages.each do |msg| %>

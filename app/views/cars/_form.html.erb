@@ -3,7 +3,7 @@
   <% if @car.errors.any? %>
     <div>
       <h2>
-        <%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:
+        <%= pluralize(@car.errors.count, "error") %> <%= t("cars.form.error") %>
       </h2>
       <ul>
         <% @car.errors.full_messages.each do |msg| %>

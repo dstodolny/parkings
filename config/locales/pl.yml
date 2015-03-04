@@ -1,0 +1,70 @@
+pl:
+  general:
+    show: "Wyświetl"
+    edit: "Edytuj"
+    remove: "Usuń"
+    back: "Wróć"
+  menu:
+    parkings: "Parkingi"
+    cars: "Samochody"
+    place_rents: "Najem miejsc"
+    log_out: "Wyloguj"
+    sign_up: "Zarejestruj się"
+    log_in: "Zaloguj"
+  accounts:
+    form:
+      error: "uniemożliwiły zapisanie tego konta:"
+    new:
+      title: "Nowe Konto"
+  cars:
+    form:
+      error: "uniemożliwiły zapisanie tego samochodu:"
+    edit:
+      title: "Edytowanie samochodu"
+    index:
+      title: "Nowy samochód"
+      model: "Model"
+      registration_number: "Numer rejestracyjny"
+  parkings:
+    form:
+      error: "uniemożliwiły zapisanie tego parkingu:"
+      places: "Miejsca"
+      kind: "Rodzaj"
+      hour_price: "Stawka Godzinna"
+      day_price: "Stawka Dzienna"
+      address: "Adres"
+      city: "Miasto"
+      street: "Ulica"
+      zip_code: "Kod pocztowy"
+    search:
+      title: "Wyszukaj Parking"
+      day_price_range: "Przedział Stawki Dziennej"
+      hour_price_range: "Przedział Stawki Godzinnej"
+      submit: "Wyszukaj"
+      city: "Miasto"
+      private: "Prywatne"
+      public: "Publiczne"
+    edit:
+      title: "Edytowanie parkingu"
+    index:
+      title: "Parkingi"
+      new_parking: "Nowy parking"
+      city: "Miasto"
+      places: "Miejsca"
+      hour_price: "Stawka Godzinna"
+      day_price: "Stawka Dzienna"
+      rent_a_place: "Wynajmij Miejsce"
+      no_results: "Brak rezultatów"
+    new:
+      title: "Nowy Parking"
+    show:
+      parking: "parking"
+      detail: "Szczegóły"
+      places: "Miejsca"
+      kind: "Rodzaj"
+      hour_price: "Stawka godzinna"
+      day_price: "Stawka dzienna"
+      address: "Adres"
+      owner: "Właściciel"
+    flash:
+      not_fount: "Parking nie znaleziony."

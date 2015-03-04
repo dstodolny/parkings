@@ -63,6 +63,6 @@ class ParkingsController < ApplicationController
   end
 
   def parking_not_found
-    redirect_to parkings_path, flash: { error: "Parking not found." }
+    redirect_to parkings_path, flash: { error: t("parkings.flash.not_found") }
   end
 end

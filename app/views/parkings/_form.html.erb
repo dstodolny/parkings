@@ -3,7 +3,7 @@
   <% if @parking.errors.any? %>
     <div>
       <h2>
-        <%= pluralize(@parking.errors.count, "error") %> prohibited this parking from being saved:
+        <%= pluralize(@parking.errors.count, "error") %> <%= t("parkings.form.error") %>
       </h2>
       <ul>
         <% @parking.errors.full_messages.each do |msg| %>
@@ -14,39 +14,39 @@
   <% end %>
 
   <p>
-    <%= f.label :places %><br>
+    <%= f.label :places, t("parkings.form.places") %><br>
     <%= f.text_field :places %>
   </p>
 
   <p>
-    <%= f.label :kind %><br>
+    <%= f.label :kind, t("parkings.form.kind") %><br>
     <%= f.select :kind, Parking::KINDS.map { |kind| [kind.capitalize, kind] } %>
   </p>
 
   <p>
-    <%= f.label :hour_price %><br>
+    <%= f.label :hour_price, t("parkings.form.hour_price") %><br>
     <%= f.text_field :hour_price %>
   </p>
 
   <p>
-    <%= f.label :day_price %><br>
+    <%= f.label :day_price, t("parkings.form.day_price") %><br>
     <%= f.text_field :day_price %>
   </p>
 
   <%= f.fields_for :address do |address_fields| %>
-  <h2>Address</h2>
+  <h2><%= t("parkings.form.address") %></h2>
   <p>
-    <%= address_fields.label :city %><br>
+    <%= address_fields.label :city, t("parkings.form.city") %><br>
     <%= address_fields.text_field :city %>
   </p>
 
   <p>
-    <%= address_fields.label :street %><br>
+    <%= address_fields.label :street, t("parkings.form.street") %><br>
     <%= address_fields.text_field :street %>
   </p>
 
   <p>
-    <%= address_fields.label :zip_code %><br>
+    <%= address_fields.label :zip_code, t("parkings.form.zip_code") %><br>
     <%= address_fields.text_field :zip_code %>
   </p>
   <% end %>

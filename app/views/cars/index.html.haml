@@ -1,14 +1,14 @@
 %h1 Cars
-= link_to "New car", new_car_path
+= link_to t("cars.index.title"), new_car_path
 %table
   %tr
-    %th Model
-    %th Registration number
+    %th= t("cars.index.model")
+    %th= t("cars.index.registration_number")
     %th{colspan: 3}
   - @cars.each do |car|
     %tr
       %td= car.model
       %td= car.registration_number
-      %td= link_to "Show", car_path(car)
-      %td= link_to "Edit", edit_car_path(car)
-      %td= link_to "Remove", car_path(car), method: :delete
+      %td= link_to t("general.show"), car_path(car)
+      %td= link_to t("general.edit"), edit_car_path(car)
+      %td= link_to t("general.remove"), car_path(car), method: :delete

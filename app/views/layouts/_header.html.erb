@@ -5,18 +5,18 @@
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li><%= link_to "Parkings", parkings_path %></li>
+        <li><%= link_to t("menu.parkings"), parkings_path %></li>
         <% if current_person %>
-          <li><%= link_to "Cars", cars_path %></li>
-          <li><%= link_to "Place Rents", place_rents_path %></li>
+          <li><%= link_to t("menu.cars"), cars_path %></li>
+          <li><%= link_to t("menu.place_rents"), place_rents_path %></li>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_person %>
-          <li><%= link_to "Log out", logout_path %></li>
+          <li><%= link_to t("menu.log_out"), logout_path %></li>
         <% else %>
-          <li><%= link_to "Sign up", register_path %></li>
-          <li><%= link_to "Log in", login_path %></li>
+          <li><%= link_to t("menu.sign_up"), register_path %></li>
+          <li><%= link_to t("menu.log_in"), login_path %></li>
         <% end %>
       </ul>
     </div>
