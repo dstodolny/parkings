@@ -21,3 +21,4 @@
         %td= link_to t("general.remove"), parking_path(parking), method: :delete
 - else
   %p= t("parkings.index.no_results")
+= will_paginate @parkings

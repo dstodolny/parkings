@@ -2,7 +2,7 @@ class ParkingsController < ApplicationController
   rescue_from ActiveRecord::RecordNotFound, with: :parking_not_found
 
   def index
-    @parkings = search(params)
+    @parkings = search(params).paginate(page: params[:page], per_page: 10)
   end
 
   def show

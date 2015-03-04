@@ -28,6 +28,8 @@ gem 'bootstrap-sass'
 gem 'autoprefixer-rails'
 gem 'haml'
 gem 'rails-i18n'
+gem 'will_paginate'
+gem 'newrelic_rpm'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

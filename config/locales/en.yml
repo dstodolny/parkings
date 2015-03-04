@@ -9,8 +9,8 @@ en:
     cars: "Cars"
     place_rents: "Place Rents"
     log_out: "Log out"
-    sign_up: "Sign_up"
-    log_in: "Log_in"
+    sign_up: "Sign up"
+    log_in: "Log in"
     language: "Language"
     english: "English"
     polish: "Polish"
@@ -71,3 +71,7 @@ en:
       owner: "Owner"
     flash:
       not_fount: "Parking not found."
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"
