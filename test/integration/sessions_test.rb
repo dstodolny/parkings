@@ -10,7 +10,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     fill_in "password", with: "12345678"
     click_button "Log In"
 
-    assert has_content? "Hello"
+    assert has_content? "You have been logged in."
   end
 
   test "don't display user name if he is not logged in" do
