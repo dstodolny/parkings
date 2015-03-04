@@ -11,4 +11,4 @@
       %td= car.registration_number
       %td= link_to "Show", car_path(car)
       %td= link_to "Edit", edit_car_path(car)
-      %td= link_to "Remove", car_path(car)
+      %td= link_to "Remove", car_path(car), method: :delete
