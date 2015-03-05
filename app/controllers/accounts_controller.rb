@@ -9,9 +9,9 @@ class AccountsController < ApplicationController
     if @account.save
       UserMailer.welcome_email(@account).deliver_later
       session[:account_id] = @account.id
-      format.html { redirect_to(root_url, flash: { success: "Account has been successfully created." }) }
+      redirect_to root_url, flash: { success: "Account has been successfully created." }
     else
-      format.html { render action: "new" }
+      render "new"
     end
   end
 
