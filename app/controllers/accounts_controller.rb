@@ -7,10 +7,11 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     if @account.save
+      UserMailer.welcome_email(@account).deliver_later
       session[:account_id] = @account.id
-      redirect_to root_url, flash: { success: "Account has been successfully created." }
+      format.html { redirect_to(root_url, flash: { success: "Account has been successfully created." }) }
     else
-      render "new"
+      format.html { render action: "new" }
     end
   end
 
