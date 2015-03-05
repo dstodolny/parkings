@@ -43,7 +43,7 @@ en:
       title: "Search Parking"
       day_price_range: "Day Price Range"
       hour_price_range: "Hour Price Range"
-      submit: "Submit"
+      submit: "Search"
       city: "City name"
       private: "Private"
       public: "Public"

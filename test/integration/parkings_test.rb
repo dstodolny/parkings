@@ -77,7 +77,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     fill_in "hour_price_max", with: "11"
     find(:css, "#private[value='private']").set(true)
 
-    click_button "Submit"
+    click_button "Search"
 
     assert_equal "London", find_field("City name").value
     assert_equal "90", find_field("day_price_min").value
@@ -91,7 +91,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     visit "/parkings"
 
     fill_in "City name", with: "London"
-    click_button "Submit"
+    click_button "Search"
 
     assert has_content? "London"
     assert has_no_content? "Warszawa"
@@ -101,7 +101,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     visit "/parkings"
 
     fill_in "City name", with: "Cracow"
-    click_button "Submit"
+    click_button "Search"
 
     assert has_no_content? "London"
     assert has_no_content? "Warszawa"
@@ -112,7 +112,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     fill_in "day_price_min", with: "70"
     fill_in "day_price_max", with: "100"
-    click_button "Submit"
+    click_button "Search"
 
     assert has_content? "Warszawa"
     assert has_content? "London"
@@ -123,7 +123,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     fill_in "day_price_min", with: "110"
     fill_in "day_price_max", with: "150"
-    click_button "Submit"
+    click_button "Search"
 
     assert has_no_content? "Warszawa"
     assert has_no_content? "London"
@@ -134,7 +134,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     fill_in "hour_price_min", with: "7"
     fill_in "hour_price_max", with: "10"
-    click_button "Submit"
+    click_button "Search"
 
     assert has_content? "Warszawa"
     assert has_content? "London"
@@ -145,7 +145,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     fill_in "hour_price_min", with: "11"
     fill_in "hour_price_max", with: "15"
-    click_button "Submit"
+    click_button "Search"
 
     assert has_no_content? "Warszawa"
     assert has_no_content? "London"
@@ -155,7 +155,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     visit "/parkings"
 
     find(:css, "#private[value='private']").set(true)
-    click_button "Submit"
+    click_button "Search"
 
     assert has_content? "Warszawa"
     assert has_no_content? "London"
@@ -165,7 +165,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     visit "/parkings"
 
     find(:css, "#public[value='public']").set(true)
-    click_button "Submit"
+    click_button "Search"
 
     assert has_content? "London"
     assert has_no_content? "Warszawa"
@@ -176,7 +176,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     find(:css, "#private[value='private']").set(true)
     find(:css, "#public[value='public']").set(true)
-    click_button "Submit"
+    click_button "Search"
 
     assert has_no_content? "London"
     assert has_no_content? "Warszawa"

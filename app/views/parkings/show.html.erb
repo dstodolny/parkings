@@ -1,20 +1,29 @@
-<h1><%= @parking.kind.capitalize %> <%= t("parkings.show.parking") %></h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1><%= @parking.kind.capitalize %> <%= t("parkings.show.parking") %></h1>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-md-6">
+          <h2><%= t("parkings.show.details") %></h2>
+          <p>
+            <strong><%= t("parkings.show.places") %>:</strong> <%= @parking.places %><br>
+            <strong><%= t("parkings.show.kind") %>:</strong> <%= @parking.kind %><br>
+            <strong><%= t("parkings.show.hour_price") %>:</strong> £<%= @parking.hour_price %><br>
+            <strong><%= t("parkings.show.day_price") %>:</strong> £<%= @parking.day_price %>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <h2><%= t("parkings.show.address") %></h2>
+          <address>
+            <%= @parking.address.zip_code %>, <%= @parking.address.city %><br>
+            <%= @parking.address.street %>
+          </address>
 
-<h2><%= t("parkings.show.details") %></h2>
-  <p>
-    <strong><%= t("parkings.show.places") %>:</strong> <%= @parking.places %><br>
-    <strong><%= t("parkings.show.kind") %>:</strong> <%= @parking.kind %><br>
-    <strong><%= t("parkings.show.hour_price") %>:</strong> £<%= @parking.hour_price %><br>
-    <strong><%= t("parkings.show.day_price") %>:</strong> £<%= @parking.day_price %>
-  </p>
-
-<h2><%= t("parkings.show.address") %></h2>
-  <address>
-    <%= @parking.address.zip_code %>, <%= @parking.address.city %><br>
-    <%= @parking.address.street %>
-  </address>
-
-<h2><%= t("parkings.show.owner") %></h2>
-  <p><strong><%= @parking.owner.try(:full_name) %></strong></p>
-
-<p><%= link_to t("general.back"), parkings_path %></p>
+          <h2><%= t("parkings.show.owner") %></h2>
+          <p><strong><%= @parking.owner.try(:full_name) %></strong></p>
+        </div>
+      </div>
+    </div>
+    &#8592; <%= link_to t("general.back"), parkings_path %>
+  </div>
+</div>

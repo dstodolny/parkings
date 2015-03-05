@@ -1,13 +1,13 @@
 <%= form_for @account do |f| %>
   <% if @account.errors.any? %>
-    <div>
-      <h2>
-        <%= pluralize(@account.errors.count, "error") %> <%= t("accounts.form.error") %>
-      </h2>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The form contains <%= pluralize(@account.errors.count, "error") %>.
+      </div>
       <ul>
-        <% @account.errors.full_messages.each do |msg| %>
+      <% @account.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
-        <% end %>
+      <% end %>
       </ul>
     </div>
   <% end %>

@@ -1,24 +1,26 @@
-%h1= t("parkings.index.title")
 = render "search"
-= link_to t("parkings.index.new_parking"), new_parking_path
-- if @parkings.size > 0
-  %table
-    %tr
-      %th= t("parkings.index.city")
-      %th= t("parkings.index.places")
-      %th= t("parkings.index.hour_price")
-      %th= t("parkings.index.day_price")
-      %th{colspan: 4}
-    - @parkings.each do |parking|
-      %tr
-        %td= parking.address.try(:city)
-        %td= parking.places
-        %td= parking.hour_price
-        %td= parking.day_price
-        %td= link_to t("parkings.index.rent_a_place"), new_parking_place_rent_path(parking)
-        %td= link_to t("general.show"), parking_path(parking)
-        %td= link_to t("general.edit"), edit_parking_path(parking)
-        %td= link_to t("general.remove"), parking_path(parking), method: :delete
-- else
-  %p= t("parkings.index.no_results")
-= will_paginate @parkings
+%div{class: "row"}
+  %div{class: "col-md-8 col-md-offset-2"}
+    %h1= t("parkings.index.title")
+    %h3= link_to t("parkings.index.new_parking"), new_parking_path
+    - if @parkings.size > 0
+      %table{class: "table"}
+        %tr
+          %th= t("parkings.index.city")
+          %th= t("parkings.index.places")
+          %th= t("parkings.index.hour_price")
+          %th= t("parkings.index.day_price")
+          %th{colspan: 4}
+        - @parkings.each do |parking|
+          %tr
+            %td= parking.address.try(:city)
+            %td= parking.places
+            %td= parking.hour_price
+            %td= parking.day_price
+            %td= link_to t("parkings.index.rent_a_place"), new_parking_place_rent_path(parking)
+            %td= link_to t("general.show"), parking_path(parking)
+            %td= link_to t("general.edit"), edit_parking_path(parking)
+            %td= link_to t("general.remove"), parking_path(parking), method: :delete
+    - else
+      %p= t("parkings.index.no_results")
+    %div{class: "text-center"}= will_paginate @parkings

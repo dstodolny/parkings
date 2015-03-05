@@ -1,57 +1,56 @@
 <%= form_for @parking do |f| %>
-
   <% if @parking.errors.any? %>
-    <div>
-      <h2>
-        <%= pluralize(@parking.errors.count, "error") %> <%= t("parkings.form.error") %>
-      </h2>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The form contains <%= pluralize(@parking.errors.count, "error") %>.
+      </div>
       <ul>
-        <% @parking.errors.full_messages.each do |msg| %>
+      <% @parking.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
-        <% end %>
+      <% end %>
       </ul>
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :places, t("parkings.form.places") %><br>
-    <%= f.text_field :places %>
-  </p>
+  <div class="form-group">
+    <%= f.label :places, t("parkings.form.places") %>
+    <%= f.text_field :places, class: 'form-control', placeholder: "Places" %>
+  </div>
 
-  <p>
-    <%= f.label :kind, t("parkings.form.kind") %><br>
-    <%= f.select :kind, Parking::KINDS.map { |kind| [kind.capitalize, kind] } %>
-  </p>
+  <div class="form-group">
+    <%= f.label :kind, t("parkings.form.kind") %>
+    <%= f.select :kind, Parking::KINDS.map { |kind| [kind.capitalize, kind] }, {}, {class: 'form-control'} %>
+  </div>
 
-  <p>
-    <%= f.label :hour_price, t("parkings.form.hour_price") %><br>
-    <%= f.text_field :hour_price %>
-  </p>
+  <div class="form-group">
+    <%= f.label :hour_price, t("parkings.form.hour_price") %>
+    <%= f.text_field :hour_price, class: 'form-control', placeholder: "Hour price" %>
+  </div>
 
-  <p>
-    <%= f.label :day_price, t("parkings.form.day_price") %><br>
-    <%= f.text_field :day_price %>
+  <div class="form-group">
+    <%= f.label :day_price, t("parkings.form.day_price") %>
+    <%= f.text_field :day_price, class: 'form-control', placeholder: "Day price" %>
   </p>
 
   <%= f.fields_for :address do |address_fields| %>
   <h2><%= t("parkings.form.address") %></h2>
-  <p>
-    <%= address_fields.label :city, t("parkings.form.city") %><br>
-    <%= address_fields.text_field :city %>
-  </p>
+  <div class="form-group">
+    <%= address_fields.label :city, t("parkings.form.city") %>
+    <%= address_fields.text_field :city, class: 'form-control', placeholder: "City" %>
+  </div>
 
-  <p>
-    <%= address_fields.label :street, t("parkings.form.street") %><br>
-    <%= address_fields.text_field :street %>
-  </p>
+  <div class="form-group">
+    <%= address_fields.label :street, t("parkings.form.street") %>
+    <%= address_fields.text_field :street, class: 'form-control', placeholder: "Street" %>
+  </div>
 
-  <p>
-    <%= address_fields.label :zip_code, t("parkings.form.zip_code") %><br>
-    <%= address_fields.text_field :zip_code %>
-  </p>
+  <div class="form-group">
+    <%= address_fields.label :zip_code, t("parkings.form.zip_code") %>
+    <%= address_fields.text_field :zip_code, class: 'form-control', placeholder: "Zip code" %>
+  </div>
   <% end %>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
 <% end %>
