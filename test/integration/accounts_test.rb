@@ -69,7 +69,6 @@ class AccountsTest < ActionDispatch::IntegrationTest
   end
 
   test "user receives an email after registering successfully" do
-    Capybara.reset!
     visit "/accounts/new"
 
     fill_in "account_email", with: "dudus@pepik.pl"
