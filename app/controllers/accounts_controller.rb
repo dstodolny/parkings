@@ -7,7 +7,7 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new(account_params)
     if @account.save
-      UserMailer.welcome_email(@account).deliver_later
+      UserMailer.welcome_email(@account).deliver_now
       session[:account_id] = @account.id
       redirect_to root_url, flash: { success: "Account has been successfully created." }
     else
