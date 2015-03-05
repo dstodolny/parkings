@@ -69,6 +69,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
   end
 
   test "user receives an email after registering successfully" do
+    Capybara.reset!
     visit "/accounts/new"
 
     fill_in "account_email", with: "dudus@pepik.pl"
@@ -79,6 +80,6 @@ class AccountsTest < ActionDispatch::IntegrationTest
 
     click_button "Create Account"
 
-    assert_equal "dudus@pepik.pl", ActionMailer::Base.deliveries.first.to.first
+    assert_equal "dudus@pepik.pl", ActionMailer::Base.deliveries.last.to.first
   end
 end
