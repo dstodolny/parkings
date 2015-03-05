@@ -22,7 +22,7 @@
           <h2><%= t("parkings.show.owner") %></h2>
           <p>
             <strong><%= @parking.owner.try(:full_name) %></strong><br />
-            <%= @parking.owner.account.email %>
+            <%= @parking.owner.try(:account).try(:email) %>
           </p>
         </div>
       </div>
