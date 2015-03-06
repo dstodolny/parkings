@@ -3,7 +3,7 @@ class PlaceRent < ActiveRecord::Base
   belongs_to :car
   validates_presence_of :starts_at, :ends_at, :parking, :car
 
-  before_save do
+  before_create do
     self.price = calculate_price
     self.slug = to_slug
   end
@@ -19,7 +19,7 @@ class PlaceRent < ActiveRecord::Base
   end
 
   def to_slug
-    (0..15).map { ('a'..'z').to_a[rand(26)] }.join
+    SecureRandom.uuid
   end
 
   def to_param
