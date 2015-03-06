@@ -15,4 +15,4 @@
 /log/*
 !/log/.keep
 /tmp
-/public/system/dragonfly/test/*
+/public/system/dragonfly/*
