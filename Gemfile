@@ -30,8 +30,10 @@ gem 'haml'
 gem 'rails-i18n'
 gem 'will_paginate'
 gem 'newrelic_rpm'
-gem 'rack-cache', require: 'rack/cache'
 gem 'dragonfly'
+gem 'dragonfly-s3_data_store'
+gem 'remotipart'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -56,4 +58,5 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'rack-cache', require: 'rack/cache'
 end
