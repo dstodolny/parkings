@@ -12,17 +12,34 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :model %><br>
-    <%= f.text_field :model %>
-  </p>
+  <div class="form-group">
+    <%= f.label :model %>
+    <%= f.text_field :model, class: 'form-control' %>
+  </div>
 
-  <p>
-    <%= f.label :registration_number %><br>
-    <%= f.text_field :registration_number %>
-  </p>
+  <div class="form-group">
+    <%= f.label :registration_number %>
+    <%= f.text_field :registration_number, class: 'form-control' %>
+  </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
+  <div class="form-group">
+    <%= image_tag @car.image.thumb("400x200#").url if @car.image_stored? %>
+  </div>
+
+  <div class="form-group">
+    <%= f.file_field :image, class: 'form-control' %>
+  </div>
+
+  <% if @car.image_stored? %>
+  <div class="form-inline checkbox">
+    <label>
+      <%= f.check_box :delete_image, class: 'form-control' %>
+      <%= label_tag :delete_image, "Remove image" %>
+    </label>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit class: 'form-control' %>
+  </div>
 <% end %>

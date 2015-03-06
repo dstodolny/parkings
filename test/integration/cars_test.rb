@@ -54,4 +54,51 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
     assert has_no_content? "Ford Mustang"
   end
+
+  test "user can add an image" do
+    visit "/cars/new"
+
+    fill_in "Model", with: "Fiat 126p"
+    fill_in "Registration number", with: "A1B2C3"
+    attach_file "car_image", "test/fixtures/images/car.jpg"
+
+    click_button "Create Car"
+    assert has_content? "Fiat 126p"
+    assert page.find('img')['src'].include? "car.jpg"
+  end
+
+  test "user can remove the image" do
+    visit "/cars/new"
+
+    fill_in "Model", with: "Maluch"
+    fill_in "Registration number", with: "A1B2C3"
+    attach_file "car_image", "test/fixtures/images/car.jpg"
+
+    click_button "Create Car"
+    visit "/cars"
+    within first("tr", text: "Maluch") do
+      click_link("Edit")
+    end
+    find(:css, "#car_delete_image[value='1']").set(true)
+    click_button "Update Car"
+    page.assert_no_selector('img')
+  end
+
+  test "user can change the image" do
+    visit "/cars/new"
+
+    fill_in "Model", with: "Maluch"
+    fill_in "Registration number", with: "A1B2C3"
+    attach_file "car_image", "test/fixtures/images/car.jpg"
+
+    click_button "Create Car"
+    visit "/cars"
+    within first("tr", text: "Maluch") do
+      click_link("Edit")
+    end
+    attach_file "car_image", "test/fixtures/images/car2.jpg"
+    click_button "Update Car"
+
+    assert page.find('img')['src'].include? "car2.jpg"
+  end
 end

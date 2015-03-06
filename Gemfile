@@ -30,6 +30,8 @@ gem 'haml'
 gem 'rails-i18n'
 gem 'will_paginate'
 gem 'newrelic_rpm'
+gem 'rack-cache', require: 'rack/cache'
+gem 'dragonfly'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

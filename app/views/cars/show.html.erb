@@ -1,7 +1,13 @@
-<h1>Car details</h1>
-<p>
-  <strong>Model:</strong> <%= @car.model %><br>
-  <strong>Registration number:</strong> <%= @car.registration_number %><br>
-</p>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Car details</h1>
 
-<p><%= link_to 'Back', cars_path %></p>
+    <%= image_tag @car.image.thumb("400x200#").url if @car.image_stored? %>
+
+    <p>
+      <strong>Model:</strong> <%= @car.model %><br>
+      <strong>Registration number:</strong> <%= @car.registration_number %><br>
+    </p>
+
+    <p><%= link_to 'Back', cars_path %></p>
+</div>
