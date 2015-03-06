@@ -19,7 +19,7 @@
 
   <div class="form-group">
     <%= f.label :kind, t("parkings.form.kind") %>
-    <%= f.select :kind, Parking::KINDS.map { |kind| [kind.capitalize, kind] }, {}, {class: 'form-control'} %>
+    <%= f.select :kind, Parking::KINDS.map { |kind| [t("parkings.form.#{kind}"), kind] }, {}, {class: 'form-control'} %>
   </div>
 
   <div class="form-group">

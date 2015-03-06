@@ -39,6 +39,10 @@ pl:
       city: "Miasto"
       street: "Ulica"
       zip_code: "Kod pocztowy"
+      outdoor: "Zewnętrzny"
+      indoor: "Wewnętrzny"
+      private: "Prywatny"
+      street: "Uliczny"
     search:
       title: "Wyszukaj Parking"
       day_price_range: "Przedział Stawki Dziennej"

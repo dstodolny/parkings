@@ -39,6 +39,10 @@ en:
       city: "City"
       street: "Street"
       zip_code: "Zip code"
+      outdoor: "Outdoor"
+      indoor: "Indoor"
+      private: "Private"
+      street: "Street"
     search:
       title: "Search Parking"
       day_price_range: "Day Price Range"
