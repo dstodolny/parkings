@@ -33,6 +33,7 @@ gem 'newrelic_rpm'
 gem 'dragonfly'
 gem 'dragonfly-s3_data_store'
 gem 'remotipart'
+gem 'omniauth-facebook'
 
 
 # Use Unicorn as the app server
