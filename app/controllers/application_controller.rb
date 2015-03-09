@@ -15,8 +15,14 @@ class ApplicationController < ActionController::Base
   private
 
   def current_person
-    @current_person ||= Account.find(session[:account_id]).person if session[:account_id]
-  end
+    if session[:account_id]
+      if session[:account_type] == "facebook"
+        @current_person ||= FacebookAccount.find(session[:account_id]).person
+      else
+        @current_person ||= Account.find(session[:account_id]).person
+      end
+    end
+ end
 
   def authorize
     redirect_to new_session_path, flash: { error: "Not authorized" } if current_person.nil?
