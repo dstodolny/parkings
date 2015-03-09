@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  uid: "1234"
-  person: one
-
-two:
-  uid: "4321"
-  person: two
+  uid: "999"
+  person: three
