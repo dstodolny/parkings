@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_person
-    @current_person ||= Object.const_get(session[:account_type]).find(session[:account_id]).person if session[:account_id]
+    @current_person ||= Object.const_get(session[:account_type]).find(session[:account_id]).person if session[:account_id] && session[:account_type]
   end
 
   def authorize
