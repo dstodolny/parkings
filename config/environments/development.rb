@@ -38,7 +38,4 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.datastore = [:file,
-                      root_path: Rails.root.join('public/system/dragonfly', Rails.env),
-                      server_root: Rails.root.join('public')]
 end

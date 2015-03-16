@@ -8,7 +8,7 @@ Dragonfly.app.configure do
 
   url_format "/media/:job/:name"
 
-  datastore(*Rails.configuration.datastore)
+  datastore(Rails.configuration.x.dragonfly.datastore, Rails.configuration.x.dragonfly.options)
 end
 
 # Logger

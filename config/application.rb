@@ -24,5 +24,10 @@ module Bootcamp6Dstodolny
     config.active_record.raise_in_transactional_callbacks = true
     I18n.available_locales = [:en, :pl]
     config.i18n.default_locale = :en
+    config.x.dragonfly.datastore = :file
+    config.x.dragonfly.options = {
+        root_path: Rails.root.join('public/system/dragonfly', Rails.env),
+        server_root: Rails.root.join('public')
+    }
   end
 end

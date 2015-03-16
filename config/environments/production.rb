@@ -76,9 +76,11 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.datastore = [:s3,
-                      bucket_name: 'bootcampdstodolny',
-                      access_key_id: ENV['S3_KEY'],
-                      secret_access_key: ENV['S3_SECRET'],
-                      url_scheme: 'https']
+  config.x.dragonfly.datastore = :s3
+  config.x.dragonfly.options = {
+    bucket_name: 'bootcampdstodolny',
+    access_key_id: ENV['S3_KEY'],
+    secret_access_key: ENV['S3_SECRET'],
+    url_scheme: 'https'
+  }
 end
