@@ -8,17 +8,7 @@ Dragonfly.app.configure do
 
   url_format "/media/:job/:name"
 
-  if Rails.env.development? || Rails.env.test?
-    datastore :file,
-              root_path: Rails.root.join('public/system/dragonfly', Rails.env),
-              server_root: Rails.root.join('public')
-  else
-    datastore :s3,
-              bucket_name: 'bootcampdstodolny',
-              access_key_id: ENV['S3_KEY'],
-              secret_access_key: ENV['S3_SECRET'],
-              url_scheme: 'https'
-  end
+  datastore(*Rails.configuration.datastore)
 end
 
 # Logger
