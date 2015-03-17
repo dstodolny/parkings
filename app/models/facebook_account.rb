@@ -1,7 +1,6 @@
 class FacebookAccount < ActiveRecord::Base
   belongs_to :person
-  validates_presence_of :uid, :person
-  accepts_nested_attributes_for :person
+  validates_presence_of :uid
 
   def self.find_or_create_for_facebook(auth)
     return nil if auth.nil?
