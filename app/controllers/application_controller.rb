@@ -15,7 +15,9 @@ class ApplicationController < ActionController::Base
   private
 
   def current_person
-    @current_person ||= Object.const_get(session[:account_type]).find(session[:account_id]).person if session[:account_id] && session[:account_type]
+    return nil unless session[:account_id]
+
+    @current_person ||= account_type.find(session[:account_id]).person
   end
 
   def authorize
@@ -24,5 +26,13 @@ class ApplicationController < ActionController::Base
 
   def locale_from_header
     request.env['HTTP_ACCEPT_LANGUAGE'].try(:scan, /^[a-z]{2}/).try(:first)
+  end
+
+  private
+
+  def account_type
+    {
+      "facebook" => FacebookAccount
+    }.fetch(session[:account_type]) { Account }
   end
 end
